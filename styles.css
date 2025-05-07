@@ -310,7 +310,10 @@ body {
 .input-group i {
     position: absolute;
     right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--accent-color);
+    pointer-events: none;
 }
 
 input, select {
@@ -321,6 +324,9 @@ input, select {
     border-radius: var(--border-radius);
     font-size: 1rem;
     transition: var(--transition);
+    appearance: none;
+    background-color: white;
+    cursor: pointer;
 }
 
 input:focus, select:focus {
@@ -369,12 +375,6 @@ input:focus, select:focus {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-}
-
-.orders-table th,
-.orders-table td {
-    padding: 10px 8px;
-    font-size: 14px;
 }
 
 .orders-table th {
@@ -1296,18 +1296,62 @@ input[type="tel"] {
         size: landscape;
         margin: 15mm;
     }
-}
-
-/* התאמת רוחב select */
-#serviceType {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-}
-
-/* הוספת סגנון לאייקון החדש */
-.fa-tools {
-    color: #666;
 } 
+
+/* עדכון סגנון ה-select להתאמה לשאר השדות */
+select {
+    width: 100%;
+    padding: 1rem;
+    padding-right: 3rem;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    appearance: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(107, 87, 68, 0.1);
+}
+
+/* הוספת חץ מותאם אישית */
+.input-group {
+    position: relative;
+}
+
+.input-group i {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    pointer-events: none;
+}
+
+/* הסתרת החץ הדיפולטיבי של ה-select */
+select::-ms-expand {
+    display: none;
+}
+
+/* הוספת חץ מותאם אישית */
+.input-group::after {
+    content: '\25BC';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-color);
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    select {
+        font-size: 16px;
+    }
+}
