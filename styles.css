@@ -1,0 +1,1313 @@
+:root {
+    --primary-color: #4A3B2B;
+    --secondary-color: #9C8164;
+    --accent-color: #6B5744;
+    --background-color: #F5F2ED;
+    --card-background: #FFFFFF;
+    --text-color: #2C2420;
+    --border-radius: 8px;
+    --shadow: 0 2px 8px rgba(74, 59, 43, 0.08);
+    --transition: all 0.3s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 0;
+    margin: 0;
+}
+
+.logo-container {
+    background: linear-gradient(135deg, #4A3B2B 0%, #2C2420 100%);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 700;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logo i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+}
+
+.logo-image {
+    height: 67px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-image {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.logo span {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(45deg, #FFFFFF, #F5F2ED);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px rgba(255,255,255,0.2),
+                     0 0 10px rgba(255,255,255,0.2);
+    }
+    to {
+        text-shadow: 0 0 10px rgba(255,255,255,0.4),
+                     0 0 20px rgba(255,255,255,0.2);
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-container {
+        padding: 1rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .logo-image {
+        height: 45px;
+    }
+
+    .main-title {
+        font-size: 1.2rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .card-effect {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    input, select, .submit-btn, .filter-button {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .input-group i {
+        font-size: 1.2rem;
+    }
+
+    .search-box {
+        margin-bottom: 1rem;
+    }
+
+    .search-row {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .filter-button {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .order-card {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .order-card .delete-btn {
+        padding: 8px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .calendar-container {
+        padding: 0.8rem;
+    }
+
+    .weekdays, .days {
+        gap: 3px;
+    }
+
+    .day {
+        font-size: 0.85rem;
+        height: 35px;
+    }
+
+    .footer {
+        padding: 1rem;
+        margin-top: 2rem;
+        font-size: 0.85rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .warranty-active, .warranty-expired {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.85rem;
+    }
+
+    .label {
+        font-size: 0.9rem;
+        min-width: 60px;
+    }
+
+    .value {
+        font-size: 0.9rem;
+    }
+
+    .status-tag {
+        font-size: 0.85rem;
+        padding: 3px 6px;
+    }
+
+    .phone {
+        font-size: 0.9rem;
+    }
+
+    .title-logo {
+        height: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .logo-image {
+        height: 40px;
+    }
+
+    .main-title {
+        font-size: 1.3rem;
+    }
+
+    input, select, .submit-btn, .filter-button {
+        padding: 0.7rem;
+        font-size: 0.95rem;
+    }
+
+    .card-effect {
+        padding: 10px;
+    }
+
+    .label, .value {
+        font-size: 0.85rem;
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+    input[type="date"] {
+        min-height: 44px;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.title-icon {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.title-logo {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+}
+
+.card-effect {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    animation: none;
+    transform: none;
+}
+
+.card-effect:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+}
+
+.animated-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group i {
+    position: absolute;
+    right: 1rem;
+    color: var(--accent-color);
+}
+
+input, select {
+    width: 100%;
+    padding: 1rem;
+    padding-right: 3rem;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input:focus, select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(107, 87, 68, 0.1);
+}
+
+.submit-btn, .filter-button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover, .filter-button:hover {
+    background: #574737;
+    transform: none;
+}
+
+.search-row {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.search-row .input-group {
+    flex: 1;
+}
+
+.filter-button {
+    min-width: 120px;
+    white-space: nowrap;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 10px 8px;
+    font-size: 14px;
+}
+
+.orders-table th {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    text-align: right;
+}
+
+.orders-table th:first-child {
+    border-top-right-radius: var(--border-radius);
+}
+
+.orders-table th:last-child {
+    border-top-left-radius: var(--border-radius);
+}
+
+.orders-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.orders-table tr:hover {
+    background: #F9F7F4;
+}
+
+.warranty-active {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #3E6B35;
+    font-weight: normal;
+}
+
+.warranty-expired {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background: rgba(244, 67, 54, 0.08);
+    color: #f44336;
+    font-weight: bold;
+}
+
+.order-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    animation: none;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.label {
+    font-weight: 500;
+    color: var(--text-color);
+    min-width: 70px;
+}
+
+.value {
+    color: #333;
+}
+
+.phone {
+    direction: ltr;
+    font-family: monospace;
+}
+
+.status-tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    margin-right: 8px;
+}
+
+.status-tag.active {
+    background: rgba(62, 107, 53, 0.08);
+    color: #3E6B35;
+}
+
+@media screen and (max-width: 768px) {
+    .orders-table {
+        display: none;
+    }
+    
+    .orders-cards {
+        display: block;
+    }
+    
+    .order-card {
+        margin: 1rem 0;
+    }
+    
+    .info-line {
+        padding: 0.5rem 0;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .orders-cards {
+        display: none;
+    }
+    
+    .orders-table {
+        display: table;
+    }
+}
+
+/* מחיקת או עדכון האנימציות הקיימות */
+@keyframes fadeIn {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.card-effect {
+    /* הסרת אנימציית fadeIn */
+    animation: none;
+    /* או שינוי האנימציה לפחות דרמטית */
+    /* animation: fadeIn 0.2s ease-out; */
+}
+
+.order-card {
+    /* הסרת אנימציית fadeIn */
+    animation: none;
+    /* או שינוי האנימציה לפחות דרמטית */
+    /* animation: fadeIn 0.2s ease-out; */
+}
+
+/* אפקט גלים בכפתורים */
+.submit-btn:after, .filter-button:after {
+    display: none;
+}
+
+.submit-btn:focus:not(:active):after, .filter-button:focus:not(:active):after {
+    animation: none;
+}
+
+/* עיצוב לוח שנה */
+input[type="date"] {
+    position: relative;
+    padding-right: 3rem;
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%236B5744' viewBox='0 0 24 24'%3E%3Cpath d='M20 3h-1V2c0-.6-.4-1-1-1s-1 .4-1 1v1H7V2c0-.6-.4-1-1-1s-1 .4-1 1v1H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V10h16v11zM4 8V5h16v3H4z'/%3E%3C/svg%3E");
+    cursor: pointer;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+    transform: none;
+}
+
+/* עיצוב חלון לוח השנה */
+::-webkit-datetime-edit {
+    padding: 0;
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+    background: transparent;
+}
+
+::-webkit-datetime-edit-text {
+    color: var(--secondary-color);
+    padding: 0 0.3em;
+}
+
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-year-field {
+    color: var(--text-color);
+    padding: 0 0.3em;
+}
+
+/* עיצוב חלון הבחירה של התאריך */
+::-webkit-calendar-picker {
+    border-radius: var(--border-radius);
+    border: none;
+    padding: 1rem;
+}
+
+/* אנימציה בעת פתיחת לוח השנה */
+@keyframes calendarPopup {
+    from {
+        opacity: 1;
+        transform: none;
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* עיצוב נוסף לשדה התאריך */
+.input-group input[type="date"] {
+    background: var(--card-background);
+    border: 2px solid #e0e0e0;
+    font-family: 'Rubik', sans-serif;
+}
+
+.input-group input[type="date"]:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* הוספת אפקט hover לשדה התאריך */
+.input-group:hover input[type="date"] {
+    border-color: var(--secondary-color);
+}
+
+/* עיצוב אייקון הלוח שנה */
+.input-group i.fa-calendar {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.input-group:hover i.fa-calendar {
+    opacity: 1;
+    transform: none;
+}
+
+/* עיצוב ספציפי למובייל */
+@media (max-width: 768px) {
+    input[type="date"] {
+        font-size: 16px;
+    }
+    
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}
+
+/* עיצוב המודל */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: none;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--card-background);
+    width: 90%;
+    max-width: 400px;
+    margin: 150px auto;
+    padding: 0;
+    border-radius: var(--border-radius);
+    animation: none; /* הסרת אנימציית slideIn */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 0.5rem;
+}
+
+.close-modal:hover {
+    color: var(--accent-color);
+}
+
+.calendar-container {
+    padding: 1rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+    padding: 0.5rem;
+    transition: var(--transition);
+}
+
+.calendar-header button:hover {
+    transform: none;
+    color: var(--primary-color);
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.day:hover:not(.empty):not(.selected) {
+    background-color: #F9F7F4;
+}
+
+.day.selected {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.day.today {
+    border: 1px solid var(--accent-color);
+}
+
+.day.empty {
+    cursor: default;
+}
+
+/* עיצוב כפתור המחיקה */
+.delete-btn {
+    background: none;
+    border: none;
+    color: #8B4744;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.delete-btn:hover {
+    color: #6B3532;
+    transform: none;
+}
+
+/* עיצוב תא המחיקה בטבלה */
+.delete-cell {
+    text-align: center;
+    width: 50px;
+}
+
+/* עיצוב כותרת הכרטיסייה */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.8rem;
+}
+
+/* עיצוב שורות בכרטיסייה */
+.order-card > div {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+/* עיצוב התוויות (labels) */
+.order-card strong {
+    min-width: 120px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* עיצוב שורת הכותרת עם כפתור המחיקה */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.8rem;
+}
+
+/* עיצוב שורת האחריות */
+.order-card .warranty-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.order-card .warranty-row strong {
+    min-width: 120px;
+}
+
+/* עיצוב סטטוס האחריות */
+.warranty-active, .warranty-expired {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .order-card {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .order-card > div {
+        margin-bottom: 0.6rem;
+        gap: 4px;
+    }
+
+    .order-card strong {
+        min-width: 38px;
+    }
+
+    .card-header {
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.6rem;
+    }
+
+    /* עיצוב כפתור המחיקה */
+    .delete-btn {
+        padding: 8px;
+        font-size: 1.1rem;
+        opacity: 0.8;
+    }
+
+    /* עיצוב הטלפון */
+    .order-card [class*="טלפון"] {
+        direction: ltr;
+        font-family: monospace;
+        letter-spacing: 0.5px;
+    }
+}
+
+/* התאמות למסכים קטנים במיוחד */
+@media (max-width: 360px) {
+    .order-card {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .order-card strong {
+        min-width: 38px;
+    }
+}
+
+/* עיצוב שדה טלפון */
+input[type="tel"] {
+    direction: ltr;
+    text-align: right;
+}
+
+/* עיצוב תא הטלפון בטבלה */
+.orders-table td:nth-child(5) {
+    direction: ltr;
+    text-align: right;
+}
+
+/* עיצוב הפוטר */
+.footer {
+    background: linear-gradient(135deg, #4A3B2B 0%, #2C2420 100%);
+    color: white;
+    padding: 1.5rem;
+    margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* אפקט גלים בפוטר */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--secondary-color), 
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+/* אנימציית הגלים */
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* עיצוב הטקסט */
+.footer p {
+    margin: 0;
+    opacity: 0.9;
+    transition: var(--transition);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.footer p:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+/* התאמה למובייל */
+@media (max-width: 768px) {
+    .footer {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* עיצוב בסיסי לכרטיסיית לקוח */
+.order-card {
+    background: white;
+    padding: 1.2rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+}
+
+/* עיצוב שורת הכותרת */
+.order-card .card-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* סידור שם הלקוח */
+.order-card .customer-name {
+    flex: 1;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* עיצוב כפתור המחיקה */
+.delete-btn {
+    color: #8B4744;
+    padding: 0.5rem;
+    margin-right: 1rem;
+}
+
+/* עיצוב שורות המידע */
+.order-card .info-row {
+    display: flex;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+/* עיצוב התוויות */
+.order-card .info-row strong {
+    color: var(--text-color);
+    font-weight: 900;
+}
+
+.order-card .info-row span {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* עיצוב שורת האחריות */
+.order-card .warranty-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* עיצוב סטטוס האחריות */
+.warranty-active {
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background: rgba(62, 107, 53, 0.08);
+    color: #3E6B35;
+}
+
+/* עיצוב מספר טלפון */
+.order-card .phone-number {
+    direction: ltr;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+    font-weight: 600 !important;
+}
+
+.order-card .header-title {
+    font-weight: 600 !important;
+}
+
+/* התאמה למסכים קטנים */
+@media (max-width: 360px) {
+    .order-card {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .order-card .info-row {
+        grid-template-columns: 80px 1fr;
+    }
+
+    .order-card .warranty-row {
+        grid-template-columns: 80px auto auto;
+    }
+}
+
+/* עיצוב מודל המחיקה */
+.delete-modal-content {
+    background: var(--card-background);
+    width: 85%;
+    max-width: 300px;
+    margin: 35vh auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.delete-modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.6rem 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.delete-modal-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.delete-modal-header .close-modal {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+    opacity: 0.8;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.delete-modal-body {
+    padding: 1rem;
+    text-align: center;
+}
+
+.delete-modal-body p {
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.3;
+}
+
+.delete-modal-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.delete-modal-buttons .cancel-btn,
+.delete-modal-buttons .confirm-btn {
+    padding: 0.5rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    min-width: 80px;
+    transition: background-color 0.2s;
+}
+
+.delete-modal-buttons .cancel-btn {
+    background-color: #e0e0e0;
+    color: var(--text-color);
+}
+
+.delete-modal-buttons .cancel-btn:hover {
+    background-color: #d0d0d0;
+}
+
+.delete-modal-buttons .confirm-btn {
+    background-color: #8B4744;
+    color: white;
+}
+
+.delete-modal-buttons .confirm-btn:hover {
+    background-color: #6B3532;
+}
+
+/* התאמות למובייל */
+@media (max-width: 480px) {
+    .delete-modal-content {
+        width: 90%;
+        margin: 35vh auto;
+    }
+    
+    .delete-modal-buttons {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    
+    .delete-modal-buttons .cancel-btn,
+    .delete-modal-buttons .confirm-btn {
+        width: auto;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+.export-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.export-btn:hover {
+    background-color: #45a049;
+}
+
+/* עיצוב סרגל הכלים */
+.tools-bar {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 1rem 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.tool-btn {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.excel-btn {
+    background-color: #217346;
+    color: white;
+}
+
+.excel-btn:hover {
+    background-color: #1a5c38;
+}
+
+.json-btn {
+    background-color: #6B5744;
+    color: white;
+}
+
+.json-btn:hover {
+    background-color: #574737;
+}
+
+.print-btn {
+    background-color: #e74c3c;  /* צבע אדום של PDF */
+    color: white;
+}
+
+.print-btn:hover {
+    background-color: #c0392b;
+}
+
+@media (max-width: 480px) {
+    .tools-bar {
+        flex-direction: column;
+    }
+    
+    .tool-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* סגנונות להדפסה */
+@media print {
+    /* הסתרת אלמנטים מיותרים */
+    .tools-bar,
+    .orders-cards,
+    .search-box,
+    .filter-button,
+    #orderForm,
+    .footer,
+    .delete-btn,
+    .delete-cell,
+    button,
+    .main-title,
+    .card-effect:not(.orders-container) {
+        display: none !important;
+    }
+
+    /* הגדרות בסיסיות לדף */
+    body {
+        margin: 0;
+        padding: 15mm;
+        background: white;
+    }
+
+    .orders-container {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        box-shadow: none !important;
+    }
+
+    /* עיצוב הטבלה */
+    .orders-table {
+        display: table !important;
+        width: 100% !important;
+        border-collapse: collapse !important;
+        direction: rtl !important;
+        margin: 0 !important;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        border: 1px solid black !important;
+        padding: 8px !important;
+        text-align: right !important;
+        font-size: 12pt !important;
+    }
+
+    .orders-table th {
+        background-color: #f0f0f0 !important;
+        font-weight: bold !important;
+        color: black !important;
+    }
+
+    /* מניעת שבירת עמוד באמצע שורה */
+    .orders-table tr {
+        page-break-inside: avoid !important;
+    }
+
+    /* הגדרות עמוד */
+    @page {
+        size: landscape;
+        margin: 15mm;
+    }
+}
+
+/* התאמת רוחב select */
+#serviceType {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* הוספת סגנון לאייקון החדש */
+.fa-tools {
+    color: #666;
+} 

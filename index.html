@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניהול הזמנות</title>
+    <link rel="icon" type="image/png" href="images/logo-title.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo">
+            <img src="images/logo.png" alt="פרגולה בכפר" class="logo-image">
+            <span>פרגולה בכפר</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="main-title">
+            <span class="title-icon"><i class="fas fa-tasks"></i></span>
+            ניהול הזמנות
+        </h1>
+        
+        <div class="add-order card-effect">
+            <h2><i class="fas fa-plus-circle"></i> הוספת הזמנה חדשה</h2>
+            <form id="orderForm" class="animated-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="customerName" placeholder="שם לקוח" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" id="installationDate" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-shield-alt"></i>
+                    <input type="number" id="warrantyMonths" placeholder="תקופת אחריות (בחודשים)" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="address" placeholder="כתובת" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="phone" placeholder="טלפון" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceType">סוג שירות:</label>
+                    <select id="serviceType" required>
+                        <option value="">בחר סוג שירות</option>
+                        <option value="פרגולות מעץ">פרגולות מעץ</option>
+                        <option value="דשא סינטטי">דשא סינטטי</option>
+                        <option value="יציקות בטון">יציקות בטון</option>
+                        <option value="גדרות עץ">גדרות עץ</option>
+                        <option value="השתלת עצים">השתלת עצים</option>
+                        <option value="מחסנים">מחסנים</option>
+                        <option value="שולחנות וספסלים">שולחנות וספסלים</option>
+                        <option value="שבילים">שבילים</option>
+                        <option value="דקים">דקים</option>
+                        <option value="אחר">אחר</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-plus"></i> הוסף הזמנה
+                </button>
+            </form>
+        </div>
+
+        <div class="search-box card-effect">
+            <div class="search-row">
+                <div class="input-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="חיפוש לפי שם לקוח...">
+                </div>
+                <button id="filterButton" class="filter-button">
+                    <i class="fas fa-search"></i> חפש
+                </button>
+            </div>
+        </div>
+
+        <div class="orders-container card-effect">
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-user"></i> שם לקוח</th>
+                        <th><i class="fas fa-calendar"></i> תאריך התקנה</th>
+                        <th><i class="fas fa-shield-alt"></i> אחריות</th>
+                        <th><i class="fas fa-tools"></i> סוג שירות</th>
+                        <th><i class="fas fa-map-marker-alt"></i> כתובת</th>
+                        <th><i class="fas fa-phone"></i> טלפון</th>
+                        <th><i class="fas fa-trash"></i></th>
+                        <div class="tools-bar">
+                            <button id="exportExcelButton" class="tool-btn excel-btn">
+                                <i class="fas fa-file-excel"></i>
+                                ייצוא לאקסל
+                            </button>
+                            <button id="exportJsonButton" class="tool-btn json-btn">
+                                <i class="fas fa-file-code"></i>
+                                גיבוי JSON
+                            </button>
+                            <button id="printButton" class="tool-btn print-btn">
+                                <i class="fas fa-print"></i>
+                                הדפסה
+                            </button>
+                        </div>
+                    </tr>
+                </thead>
+                <tbody id="ordersTableBody">
+                </tbody>
+            </table>
+
+
+            <div class="orders-cards" id="ordersCards">
+            </div>
+        </div>
+    </div>
+    <div id="calendar-modal" class="modal">
+        <div class="modal-content card-effect">
+            <div class="modal-header">
+                <h3>בחר תאריך</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prevMonth"><i class="fas fa-chevron-right"></i></button>
+                    <h4 id="currentMonth"></h4>
+                    <button id="nextMonth"><i class="fas fa-chevron-left"></i></button>
+                </div>
+                <div class="weekdays">
+                    <div>א</div>
+                    <div>ב</div>
+                    <div>ג</div>
+                    <div>ד</div>
+                    <div>ה</div>
+                    <div>ו</div>
+                    <div>ש</div>
+                </div>
+                <div id="calendar-days" class="days"></div>
+            </div>
+        </div>
+    </div>
+    <div id="delete-modal" class="modal delete-modal">
+        <div class="modal-content delete-modal-content">
+            <div class="delete-modal-header">
+                <h3>אישור מחיקה</h3>
+                <button class="close-modal" onclick="closeDeleteModal()">&times;</button>
+            </div>
+            <div class="delete-modal-body">
+                <p>האם אתה בטוח שברצונך למחוק הזמנה זו?</p>
+                <div class="delete-modal-buttons">
+                    <button class="cancel-btn" onclick="closeDeleteModal()">ביטול</button>
+                    <button class="confirm-btn" onclick="confirmDelete()">מחק</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+            <p>© 2025 פרגולה בכפר. הגינה שלך - ברמה שלנו </p>
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
