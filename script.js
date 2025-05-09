@@ -7,6 +7,9 @@ let currentMonth = new Date();
 
 let orderToDelete = null;
 
+// הוספת משתנה גלובלי לשמירת ה-unsubscribe
+let unsubscribeListener = null;
+
 // הגדרות Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyCnlK35-Bva8u4gdBR4JuuyJpotKK5ODW4",
@@ -31,6 +34,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // בדיקת חיבור למסד הנתונים
         await db.collection('orders').get();
         console.log('Firebase connection successful');
+        
+        // הפעלת האזנה בזמן אמת
+        setupRealtimeListener();
         
         // המשך האתחול הרגיל
         await loadOrders();
@@ -521,4 +527,56 @@ function exportToPDF() {
     container.setAttribute('data-print-date', new Date().toLocaleString('he-IL'));
     
     window.print();
-} 
+}
+
+// פונקציה להאזנה לשינויים בזמן אמת
+function setupRealtimeListener() {
+    // ביטול האזנה קודמת אם קיימת
+    if (unsubscribeListener) {
+        unsubscribeListener();
+    }
+
+    // הגדרת האזנה חדשה
+    unsubscribeListener = db.collection('orders')
+        .orderBy('createdAt', 'desc')
+        .onSnapshot((snapshot) => {
+            // טיפול בשינויים
+            snapshot.docChanges().forEach((change) => {
+                if (change.type === 'added') {
+                    // הזמנה חדשה נוספה
+                    const newOrder = {
+                        id: change.doc.id,
+                        ...change.doc.data()
+                    };
+                    orders.unshift(newOrder);
+                } else if (change.type === 'modified') {
+                    // הזמנה עודכנה
+                    const index = orders.findIndex(order => order.id === change.doc.id);
+                    if (index !== -1) {
+                        orders[index] = {
+                            id: change.doc.id,
+                            ...change.doc.data()
+                        };
+                    }
+                } else if (change.type === 'removed') {
+                    // הזמנה נמחקה
+                    const index = orders.findIndex(order => order.id === change.doc.id);
+                    if (index !== -1) {
+                        orders.splice(index, 1);
+                    }
+                }
+            });
+            
+            // עדכון התצוגה
+            renderOrders();
+        }, (error) => {
+            console.error("Error listening to changes: ", error);
+        });
+}
+
+// ניקוי האזנה בעת עזיבת הדף
+window.addEventListener('beforeunload', () => {
+    if (unsubscribeListener) {
+        unsubscribeListener();
+    }
+}); 
